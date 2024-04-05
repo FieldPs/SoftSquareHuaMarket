@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnRegulars Payment</title>
+    <link rel="stylesheet" href="Pay.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="whiteblock">
+            <h1 id="header">จองสำเร็จแล้ว!</h1>
+            <p id="under-header">กรุณาเลือกวิธีชำระเงิน</p>
+            <select id="paymentOption">
+                <option value="QR Code">QR CODE</option>
+                <option value="Cash">เงินสด</option>
+            </select>
+            <div class="divimg">
+                <img id="paymentImg" src="img/QRFriday.jpg" class="img">
+            </div>
+            <input type="file" name="fileupload" value="fileupload" id="fileupload">
+            <div>
+                <button>Submit</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Get references to elements
+        const paymentOption = document.getElementById('paymentOption');
+        const paymentImg = document.getElementById('paymentImg');
+        const fileupload = document.getElementById('fileupload');
+        const underHeader = document.getElementById('under-header');
+        let yesTextAdded = false; // Flag to track if "yes" text is added
+    
+        // Add event listener to select element
+        paymentOption.addEventListener('change', function() {
+            // Determine which option is selected
+            const selectedOption = paymentOption.value;
+    
+            // Change image source and update other elements based on selected option
+            if (selectedOption === 'QR Code') {
+                paymentImg.src = 'img/QRTuesday.jpg';
+                paymentImg.style.display = 'block'; // Show image
+                fileupload.style.display = 'block'; // Show file upload input if hidden
+                underHeader.innerText = "กรุณาอัปโหลดไฟล์รูปภาพของการโอนเงิน"; // Update under-header text
+                // Remove "yes" text if already added
+            } else if (selectedOption === 'Cash') {
+                paymentImg.style.display = 'none'; // Hide image
+                fileupload.style.display = 'none'; // Hide file upload input
+                underHeader.innerText = "ชำระเงินด้วยเงินสด"; // Update under-header text
+                // Add "yes" text only if not already added
+                if (yesTextAdded) {
+                    underHeader.parentNode.removeChild(underHeader.nextSibling);
+                    yesTextAdded = false;
+                } else {
+                    // Adding another under-header with text "yes"
+                    const newUnderHeader = document.createElement('p');
+                    newUnderHeader.innerText = "กรุณาจ่ายเงินที่เจ้าหน้าที่";
+                    underHeader.parentNode.appendChild(newUnderHeader);
+                    yesTextAdded = true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
