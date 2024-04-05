@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulars Payment</title>
+    <link rel="stylesheet" href="Pay.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="whiteblock">
+            <h1 id="header">กรุณาชำระเงิน!!</h1>
+            <p id="under-header">กรุณาเลือกวิธีชำระเงิน</p>
+            <select id="paymentOption">
+                <option value="Tuesday">อังคาร</option>
+                <option value="Friday">ศุกร์</option>
+            </select>
+            <div class="divimg">
+                <img id="paymentImg" src="img/QRTuesday.jpg" class="img">
+            </div>
+            <input type="file" name="fileupload" value="fileupload" id="fileupload">
+            <div>
+                <button><a href="./menu.html" style="color: white; text-decoration: none;">Submit</a></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Get references to elements
+        const paymentOption = document.getElementById('paymentOption');
+        const paymentImg = document.getElementById('paymentImg');
+
+        // Add event listener to select element
+        paymentOption.addEventListener('change', function() {
+            // Determine which option is selected
+            const selectedOption = paymentOption.value;
+
+            // Change image source based on selected option
+            if (selectedOption === 'Tuesday') {
+                paymentImg.src = 'img/QRTuesday.jpg';
+            } else if (selectedOption === 'Friday') {
+                paymentImg.src = 'img/QRFriday.jpg';
+            }
+        });
+    </script>
+</body>
+</html>
